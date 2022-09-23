@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Lisbon App</string>
+
+    <!-- Restaurants -->
+    <string name="sucolento">Sucolento</string>
+    <string name="yallah_lisboa">Yallah Lisboa</string>
+    <string name="frade_dos_mares">Frade dos Mares</string>
+    <string name="cafe_de_sao_bento">Café de São Bento</string>
+    <string name="armaha">Armaha</string>
+
+    <!-- Coffee Shops -->
+    <string name="buna_specialty_coffee_shop">Buna Specialty Coffee Shop</string>
+    <string name="starbucks">Starbucks</string>
+    <string name="hello_kristof">Hello, Kristof</string>
+    <string name="jeronymo">Jeronymo</string>
+    <string name="dedes">Dede\'s</string>
+
+    <!-- Bars -->
+    <string name="the_bar">The Bar</string>
+    <string name="social_b">Social B</string>
+    <string name="cinco_lounge">CINCO lounge</string>
+    <string name="imprensa_cocktail_and_oyster_bar">Imprensa Cocktail and Oyster Bar</string>
+    <string name="mignon_sports_bar">Mignon Sports Bar</string>
+
+    <!-- Parks -->
+    <string name="alvito_recreational_park">Alvito Recreational Park</string>
+    <string name="parque_dos_moinhos_de_santana">Parque dos Moinhos de Santana</string>
+    <string name="park_of_necessidades">Park of Necessidades</string>
+
+    <!-- Museums -->
+    <string name="museu_nacional_de_arte_antiga">Museu Nacional de Arte Antiga</string>
+    <string name="national_coach_museum">National Coach Museum</string>
+    <string name="museu_de_marinha">Museu de Marinha</string>
+    <string name="restaurant_title">Restaurants</string>
+</resources>

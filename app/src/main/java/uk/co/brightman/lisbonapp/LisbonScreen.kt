@@ -14,13 +14,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import uk.co.brightman.lisbonapp.model.Restaurant
 import uk.co.brightman.lisbonapp.ui.LisbonViewModel
+import uk.co.brightman.lisbonapp.ui.RestaurantsScreen
+import uk.co.brightman.lisbonapp.ui.WhereToNextScreen
 
 /**
  * enum values that represent the screens in the app
  */
 enum class LisbonScreen(@StringRes val title: Int) {
     Home(title = R.string.app_name),
+    WhereToScreen(title = R.string.where_to_go),
     Restaurant(title = R.string.restaurant_title),
 }
 
@@ -85,12 +89,26 @@ fun LisbonApp(
             modifier = modifier.padding(innerPadding),
         ) {
             composable(route = LisbonScreen.Home.name) {
-//                SelectAnOptionScreen(
-//                    onStartOrderButtonClicked = {
-//                        navController.navigate(LisbonScreen.Restaurant.name)
-//                    }
-//                )
+                WhereToNextScreen(
+                    whereToNextScreen = {
+                        navController.navigate(LisbonScreen.Home.name)
+                    }
+                )
             }
+/*            composable(route = LisbonScreen.Restaurant.name) {
+                RestaurantsScreen(
+                    onCancelButtonClicked = {
+//                        viewModel.resetOrder()
+                        navController.popBackStack()
+                    },
+                        onNextButtonClicked = {
+//                            navController.navigate(LunchTrayScreen.SideDish.name)
+                        },
+                        onSelectionChanged = { item ->
+//                            viewModel.updateEntree(item)
+                        }
+                )
+            }*/
         }
     }
 }

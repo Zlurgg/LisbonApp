@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Lisbon App</string>
     <string name="back_button">Back</string>
+    <string name="next_button">Next</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="where_to_go">Where to next?</string>
 
     <!-- Restaurants -->
     <string name="sucolento">Sucolento</string>
@@ -33,4 +36,7 @@
     <string name="national_coach_museum">National Coach Museum</string>
     <string name="museu_de_marinha">Museu de Marinha</string>
     <string name="restaurant_title">Restaurants</string>
+
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -88,14 +88,14 @@ fun LisbonApp(
             startDestination = LisbonScreen.Home.name,
             modifier = modifier.padding(innerPadding),
         ) {
-//            composable(route = LisbonScreen.Home.name) {
-//                WhereToNextScreen(
-//                    whereToNextScreen = {
-//                        navController.navigate(LisbonScreen.Home.name)
-//                    }
-//                )
-//            }
             composable(route = LisbonScreen.Home.name) {
+                WhereToNextScreen(
+                    whereToNextScreen = {
+                        navController.navigate(LisbonScreen.Home.name)
+                    }
+                )
+            }
+            composable(route = LisbonScreen.Restaurant.name) {
                 RestaurantsScreen(
                     restaurants = DataSource.restaurants,
                     onCancelButtonClicked = {

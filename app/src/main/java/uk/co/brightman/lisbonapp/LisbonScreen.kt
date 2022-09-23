@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import uk.co.brightman.lisbonapp.data.DataSource
+import uk.co.brightman.lisbonapp.ui.BarScreen
 import uk.co.brightman.lisbonapp.ui.LisbonViewModel
 import uk.co.brightman.lisbonapp.ui.RestaurantsScreen
 import uk.co.brightman.lisbonapp.ui.WhereToNextScreen
@@ -91,7 +93,7 @@ fun LisbonApp(
             composable(route = LisbonScreen.Home.name) {
                 WhereToNextScreen(
                     whereToNextScreen = {
-                        navController.navigate(LisbonScreen.Home.name)
+                        whereToNext(navController)
                     }
                 )
             }
@@ -100,16 +102,42 @@ fun LisbonApp(
                     restaurants = DataSource.restaurants,
                     onCancelButtonClicked = {
 //                        viewModel.resetOrder()
-//                        navController.popBackStack(LunchTrayScreen.Start.name, inclusive = false)
+                        navController.popBackStack(LisbonScreen.Home.name, inclusive = false)
                     },
                     onNextButtonClicked = {
-//                        navController.navigate(LunchTrayScreen.SideDish.name)
+                        whereToNext(navController)
                     },
-                    onSelectionChanged = {
-//                        item -> viewModel.updateEntree(item)
-                    }
+/*                    onSelectionChanged = {
+                        item -> viewModel.updateEntree(item)
+                    }*/
                 )
             }
+/*            composable(route = LisbonScreen.Bar.name) {
+                BarScreen(
+                    bars = DataSource.bar,
+                    onCancelButtonClicked = {
+//                        viewModel.resetOrder()
+                        navController.popBackStack(LisbonScreen.Home.name, inclusive = false)
+                    },
+                    onNextButtonClicked = {
+                        whereToNext(navController)
+                    },
+*//*                    onSelectionChanged = {
+                        item -> viewModel.updateEntree(item)
+                    }*//*
+                )
+            }*/
         }
+    }
+}
+
+fun whereToNext(navController: NavController) {
+    when ((1..4).random()) {
+        0 -> navController.navigate(LisbonScreen.Restaurant.name)
+/*                            1 -> navController.navigate(LisbonScreen.Bar.name)
+                            2 -> navController.navigate(LisbonScreen.CoffeeShop.name)
+                            3 -> navController.navigate(LisbonScreen.Park.name)
+                            4 -> navController.navigate(LisbonScreen.Museum.name)*/
+        else -> navController.navigate(LisbonScreen.Restaurant.name)
     }
 }

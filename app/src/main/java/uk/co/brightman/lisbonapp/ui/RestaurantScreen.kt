@@ -21,7 +21,7 @@ fun RestaurantsScreen(
     restaurants: List<Restaurant>,
     onCancelButtonClicked: () -> Unit = {},
     onNextButtonClicked: () -> Unit = {},
-    onSelectionChanged: (Restaurant) -> Unit,
+//    onSelectionChanged: (Restaurant) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -41,7 +41,7 @@ fun RestaurantsScreen(
                     selectedRestaurantName =
                         restaurantName
                 },
-                onSelectionChanged = onSelectionChanged
+//                onSelectionChanged = onSelectionChanged
             )
         }
 
@@ -61,7 +61,7 @@ fun RestaurantRow(
     restaurant: Restaurant,
     selectedRestaurantName: String,
     onSelectionRestaurantChanged: (String) -> Unit,
-    onSelectionChanged: (Restaurant) -> Unit,
+//    onSelectionChanged: (Restaurant) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(

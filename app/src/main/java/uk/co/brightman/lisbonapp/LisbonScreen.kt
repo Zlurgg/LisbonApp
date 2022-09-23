@@ -112,6 +112,13 @@ fun LisbonApp(
                     }*/
                 )
             }
+
+            /**
+             * So should be able to change this, all of these are places; no need to have separate calls for restaurant, bar etc
+             * instead have one Place screen that gets the correct data
+             * so need to pass the selection (from the random int) to the PlaceScreen (this change be refactored from RestaurantScreen
+             * likewise no need for multiple composable functions here as they are all going to call the same screen Place
+             */
 /*            composable(route = LisbonScreen.Bar.name) {
                 BarScreen(
                     bars = DataSource.bar,

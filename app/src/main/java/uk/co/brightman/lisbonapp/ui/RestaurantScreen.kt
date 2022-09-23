@@ -3,22 +3,20 @@ package uk.co.brightman.lisbonapp.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import uk.co.brightman.lisbonapp.R
-import uk.co.brightman.lisbonapp.model.Place.Restaurant
+import uk.co.brightman.lisbonapp.model.Places.Place
 
 @Composable
 fun RestaurantsScreen(
-    restaurants: List<Restaurant>,
+    restaurants: List<Place>,
     onCancelButtonClicked: () -> Unit = {},
     onNextButtonClicked: () -> Unit = {},
 //    onSelectionChanged: (Restaurant) -> Unit,
@@ -58,14 +56,14 @@ fun RestaurantsScreen(
 
 @Composable
 fun RestaurantRow(
-    restaurant: Restaurant,
+    restaurant: Place,
     selectedRestaurantName: String,
     onSelectionRestaurantChanged: (String) -> Unit,
 //    onSelectionChanged: (Restaurant) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = stringResource(id = restaurant.name),
@@ -73,7 +71,8 @@ fun RestaurantRow(
         )
         Image(
             painter = painterResource(restaurant.image),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth()
         )
         Divider(
             thickness = 1.dp,

@@ -4,15 +4,17 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 
-sealed class Place(
+sealed class Places(
     open val name: Int,
     open val image: Int,
+    open val category: String,
 ) {
     /**
      * Getter method for places.
      */
-    data class Restaurant(
+    data class Place(
         @StringRes override val name: Int,
-        @DrawableRes override val image: Int
-    ) : Place(name, image)
+        @DrawableRes override val image: Int,
+        override val category: String
+    ) : Places(name, image, category)
 }

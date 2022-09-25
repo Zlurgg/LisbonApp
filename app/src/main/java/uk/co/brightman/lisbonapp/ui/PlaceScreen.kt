@@ -15,7 +15,7 @@ import uk.co.brightman.lisbonapp.R
 import uk.co.brightman.lisbonapp.model.Places.Place
 
 @Composable
-fun RestaurantsScreen(
+fun PlaceScreen(
     restaurants: List<Place>,
     onCancelButtonClicked: () -> Unit = {},
     onNextButtonClicked: () -> Unit = {},
@@ -23,28 +23,28 @@ fun RestaurantsScreen(
     modifier: Modifier = Modifier
 ) {
 
-    var selectedRestaurantName by rememberSaveable { mutableStateOf("") }
+    var selectedPlaceName by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = modifier
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        restaurants.forEach { restaurant ->
-            val restaurantName = stringResource(id = restaurant.name)
-            RestaurantRow(
-                restaurant = restaurant,
-                selectedRestaurantName = selectedRestaurantName,
-                onSelectionRestaurantChanged = {
-                    selectedRestaurantName =
-                        restaurantName
+        restaurants.forEach { place ->
+            val placeName = stringResource(id = place.name)
+            PlaceRow(
+                place = place,
+                selectedPlaceName = selectedPlaceName,
+                onSelectionPlaceChanged = {
+                    selectedPlaceName =
+                        placeName
                 },
 //                onSelectionChanged = onSelectionChanged
             )
         }
 
-        RestaurantScreenButtonGroup(
-            selectedRestaurantName = selectedRestaurantName,
+        PlaceScreenButtonGroup(
+            selectedPlaceName = selectedPlaceName,
             onCancelButtonClicked = onCancelButtonClicked,
             onNextButtonClicked = {
                 // Assert not null bc next button is not enabled unless selectedItem is not null.
@@ -55,22 +55,22 @@ fun RestaurantsScreen(
 }
 
 @Composable
-fun RestaurantRow(
-    restaurant: Place,
-    selectedRestaurantName: String,
-    onSelectionRestaurantChanged: (String) -> Unit,
-//    onSelectionChanged: (Restaurant) -> Unit,
+fun PlaceRow(
+    place: Place,
+    selectedPlaceName: String,
+    onSelectionPlaceChanged: (String) -> Unit,
+//    onSelectionChanged: (Place) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = stringResource(id = restaurant.name),
+            text = stringResource(id = place.name),
             style = MaterialTheme.typography.h6
         )
         Image(
-            painter = painterResource(restaurant.image),
+            painter = painterResource(place.image),
             contentDescription = null,
             modifier = Modifier.fillMaxWidth()
         )
@@ -82,8 +82,8 @@ fun RestaurantRow(
 }
 
 @Composable
-fun RestaurantScreenButtonGroup(
-    selectedRestaurantName: String,
+fun PlaceScreenButtonGroup(
+    selectedPlaceName: String,
     onCancelButtonClicked: () -> Unit,
     onNextButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
@@ -94,13 +94,16 @@ fun RestaurantScreenButtonGroup(
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        OutlinedButton(modifier = Modifier.weight(1f), onClick = onCancelButtonClicked) {
+        OutlinedButton(
+            modifier = Modifier.weight(1f),
+            onClick = onCancelButtonClicked
+        ) {
             Text(stringResource(R.string.cancel).uppercase())
         }
         Button(
             modifier = Modifier.weight(1f),
             // the button is enabled when the user makes a selection
-            enabled = selectedRestaurantName.isNotEmpty(),
+            enabled = selectedPlaceName.isNotEmpty(),
             onClick = onNextButtonClicked
         ) {
             Text(stringResource(R.string.next).uppercase())

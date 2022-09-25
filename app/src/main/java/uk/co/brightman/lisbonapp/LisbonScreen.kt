@@ -16,9 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import uk.co.brightman.lisbonapp.data.DataSource
-import uk.co.brightman.lisbonapp.ui.BarScreen
 import uk.co.brightman.lisbonapp.ui.LisbonViewModel
-import uk.co.brightman.lisbonapp.ui.RestaurantsScreen
+import uk.co.brightman.lisbonapp.ui.PlaceScreen
 import uk.co.brightman.lisbonapp.ui.WhereToNextScreen
 
 /**
@@ -28,6 +27,7 @@ enum class LisbonScreen(@StringRes val title: Int) {
     Home(title = R.string.app_name),
     WhereToScreen(title = R.string.where_to_go),
     Restaurant(title = R.string.restaurant_title),
+    Bar(title = R.string.bar_title),
 }
 
 /**
@@ -97,8 +97,16 @@ fun LisbonApp(
                     }
                 )
             }
+
+            /**
+             * So should be able to change this, all of these are places; no need to have separate calls for restaurant, bar etc
+             * instead have one Place screen that gets the correct data
+             * so need to pass the selection (from the random int) to the PlaceScreen (this change be refactored from RestaurantScreen
+             * likewise no need for multiple composable functions here as they are all going to call the same screen Place
+             */
+
             composable(route = LisbonScreen.Restaurant.name) {
-                RestaurantsScreen(
+                PlaceScreen(
                     restaurants = DataSource.restaurants,
                     onCancelButtonClicked = {
 //                        viewModel.resetOrder()
@@ -112,16 +120,9 @@ fun LisbonApp(
                     }*/
                 )
             }
-
-            /**
-             * So should be able to change this, all of these are places; no need to have separate calls for restaurant, bar etc
-             * instead have one Place screen that gets the correct data
-             * so need to pass the selection (from the random int) to the PlaceScreen (this change be refactored from RestaurantScreen
-             * likewise no need for multiple composable functions here as they are all going to call the same screen Place
-             */
-/*            composable(route = LisbonScreen.Bar.name) {
-                BarScreen(
-                    bars = DataSource.bar,
+            composable(route = LisbonScreen.Bar.name) {
+                PlaceScreen(
+                    restaurants = DataSource.bars,
                     onCancelButtonClicked = {
 //                        viewModel.resetOrder()
                         navController.popBackStack(LisbonScreen.Home.name, inclusive = false)
@@ -129,11 +130,11 @@ fun LisbonApp(
                     onNextButtonClicked = {
                         whereToNext(navController)
                     },
-*//*                    onSelectionChanged = {
+/*                    onSelectionChanged = {
                         item -> viewModel.updateEntree(item)
-                    }*//*
+                    }*/
                 )
-            }*/
+            }
         }
     }
 }
@@ -141,10 +142,10 @@ fun LisbonApp(
 fun whereToNext(navController: NavController) {
     when ((1..4).random()) {
         0 -> navController.navigate(LisbonScreen.Restaurant.name)
-/*                            1 -> navController.navigate(LisbonScreen.Bar.name)
-                            2 -> navController.navigate(LisbonScreen.CoffeeShop.name)
-                            3 -> navController.navigate(LisbonScreen.Park.name)
-                            4 -> navController.navigate(LisbonScreen.Museum.name)*/
+                            1 -> navController.navigate(LisbonScreen.Bar.name)
+//                            2 -> navController.navigate(LisbonScreen.CoffeeShop.name)
+//                            3 -> navController.navigate(LisbonScreen.Park.name)
+//                            4 -> navController.navigate(LisbonScreen.Museum.name)
         else -> navController.navigate(LisbonScreen.Restaurant.name)
     }
 }

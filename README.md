@@ -1,1 +1,1 @@
-Placeholder travel app idea
+Placeholder travel app idea from travelling
